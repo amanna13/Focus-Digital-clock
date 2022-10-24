@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Digital Clock with Glowing Effect </title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="main.css">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class = "date">
+         <div class="display">
+            <div id="time"></div>
+         </div>
+         <span></span>
+         <span></span>
+      </div>
+     
+<div class = "right-col">
+   <img src = "play.png" id="play">
+</div>
+
+<audio id ="mySong">
+<source src = "sound.mp3" type = "audio/mp3">
+</audio>
+
+<script>
+ var mySong = document.getElementById("mySong");
+ var play = document.getElementById("play");
+
+play.onclick = function(){
+      if(mySong.paused){
+         mySong.play();
+         play.src = "pause.png";
+  }
+else{
+     mySong.pause();
+     play.src = "play.png";
+   }
+}
+
+</script>
+
+      <script>
+        setInterval(()=>{
+          const time = document.querySelector(".display #time");
+          let date = new Date();
+          let hours = date.getHours();
+          let minutes = date.getMinutes();
+          let seconds = date.getSeconds();
+          let day_night = " AM";
+          if(hours > 12){
+            day_night = " PM";
+            hours = hours - 12;
+          }
+          if(seconds < 10){
+            seconds = "0" + seconds;
+          }
+          if(minutes < 10){
+            minutes = "0" + minutes;
+          }
+          if(hours < 10){
+            hours = "0" + hours;
+          }
+          time.textContent = hours + "  :  " + minutes + "  :  " + seconds + "" + day_night;
+        });
+     </script>
+  </body>
+</html>
